@@ -43,7 +43,9 @@ public class TccInvokerInvocationHandler extends InvokerInvocationHandler {
             }
 
             ProceedingJoinPoint pjp = new MethodProceedingJoinPoint(proxy, target, method, args);
-            return FactoryBuilder.factoryOf(ResourceCoordinatorAspect.class).getInstance().interceptTransactionContextMethod(pjp);
+            return FactoryBuilder.factoryOf(ResourceCoordinatorAspect.class)
+                .getInstance()
+                .interceptTransactionContextMethod(pjp);
         } else {
             return super.invoke(target, method, args);
         }

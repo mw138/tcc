@@ -66,7 +66,7 @@ public class MethodProceedingJoinPoint implements ProceedingJoinPoint, JoinPoint
 
     @Override
     public Object proceed(Object[] objects) throws Throwable {
-        throw new UnsupportedOperationException();
+        return proceed();
     }
 
     public String toShortString() {
