@@ -3,7 +3,6 @@ package org.mengyun.tcctransaction.repository;
 
 import org.mengyun.tcctransaction.Transaction;
 import org.mengyun.tcctransaction.api.TransactionStatus;
-import org.mengyun.tcctransaction.serializer.JdkSerializationSerializer;
 import org.mengyun.tcctransaction.serializer.KryoPoolSerializer;
 import org.mengyun.tcctransaction.serializer.ObjectSerializer;
 import org.mengyun.tcctransaction.utils.CollectionUtils;
@@ -202,7 +201,6 @@ public class JdbcTransactionRepository extends CachableTransactionRepository {
             builder.append("SELECT GLOBAL_TX_ID, BRANCH_QUALIFIER, CONTENT,STATUS,TRANSACTION_TYPE,CREATE_TIME,LAST_UPDATE_TIME,RETRIED_COUNT,VERSION");
             builder.append(StringUtils.isNotEmpty(domain) ? ",DOMAIN" : "");
             builder.append("  FROM " + getTableName() + " WHERE LAST_UPDATE_TIME < ?");
-            builder.append(" AND IS_DELETE = 0 ");
             builder.append(StringUtils.isNotEmpty(domain) ? " AND DOMAIN = ?" : "");
 
             stmt = connection.prepareStatement(builder.toString());
